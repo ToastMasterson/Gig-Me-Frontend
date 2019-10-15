@@ -1,0 +1,5 @@
+{
+    "domain": "gig-me.auth0.com",
+    "clientId": "004I2FioPFIxgC0HJocX1VruscVQ5pYq",
+    "audience" : "http://localhost:3000/"
+}
