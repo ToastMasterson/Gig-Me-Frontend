@@ -1,0 +1,33 @@
+.nav-bar {
+    background-color: black;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+span {
+    display: flex;
+    justify-content: space-between;
+}
+
+a {
+    margin: 10px;
+}
+
+.nav-profile-image {
+    vertical-align: middle;
+    border-style: solid;
+    width: 30%;
+    border-width: 3px;
+    border-radius: 100%;
+}
+
+.nav-logo {
+    width: 150px;
+}
+
+.logo-and-links {
+    display: flex;
+    align-items: flex-end;
+}

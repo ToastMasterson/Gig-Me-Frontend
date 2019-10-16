@@ -1,12 +1,16 @@
 import React from 'react';
-import './style_sheets/App.css';
-import LogIn from './components/LogIn';
-import NavBar from './NavBar/NavBar';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import ArtistHome from './containers/ArtistHome'
 import { useAuth0 } from './react-auth0-wrapper'
+
 import PrivateRoute from './components/PrivateRoute'
+
 import ExternalApi from './components/ExternalApi';
+import ArtistHome from './containers/ArtistHome'
+import ArtistProfile from './containers/ArtistProfile'
+import LogIn from './components/LogIn'
+import NavBar from './NavBar/NavBar';
+
+import './style_sheets/App.css';
 
 function App() {
   const { loading } = useAuth0()
@@ -23,12 +27,12 @@ function App() {
         <header>
           <NavBar />
           <p>Work In Progress...</p>
-          {/* <LogIn /> */}
         </header>
         <Switch>
-          <Route path="/" exact />
-          <PrivateRoute path="/artisthome" component={ArtistHome} />
+          <Route path="/" exact component={LogIn}/>
+          <PrivateRoute path="/artistprofile" component={ArtistProfile} />
           <PrivateRoute path="/external-api" component={ExternalApi} />
+          <PrivateRoute path="/artisthome" component={ArtistHome} />
         </Switch>
       </BrowserRouter>
     </div>
