@@ -13,7 +13,11 @@
 }
 
 .headers {
-    margin-bottom: 60px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .button {
@@ -26,4 +30,15 @@
 .button:hover {
     box-shadow: 0px 0px 5px blue;
     color: blue;
+}
+
+.login-logo {
+    width: 50%;
+}
+
+.choices {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: baseline;
+    width: 60%;
 }

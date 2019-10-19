@@ -4,7 +4,10 @@ import { useAuth0 } from '../react-auth0-wrapper'
 const ArtistHome = () => {
     const { loading, user } = useAuth0()
     
-    console.log(user)
+    console.log(user.nickname)
+
+    fetch(`http://localhost:3001/api/artists/${user.nickname}`)
+    .then(res => res.json()).then(artist => console.log(artist))
 
     if (loading || !user ) {
         return (

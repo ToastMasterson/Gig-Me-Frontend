@@ -1,24 +1,107 @@
 import React from 'react'
 import { useAuth0 } from '../react-auth0-wrapper'
-import { Redirect } from 'react-router-dom'
+import { withRouter, Redirect } from 'react-router-dom'
+import Auth0Lock from 'auth0-lock'
+
 import '../style_sheets/LogIn.css'
 
 const LogIn = () => {
-    const { isAuthenticated, loginWithRedirect } = useAuth0()
+    const { isAuthenticated, user } = useAuth0()
+
+    var options = {
+        theme: {
+            logo: 'https://i.imgur.com/mQWWPgC.png',
+            primaryColor: '#2975a6'
+        },
+        auth: {
+            redirectUrl: 'http://localhost:3000/artisthome',
+            responseType: 'token',
+        },
+        scope: "openid user_metadata",
+        allowedConnections: ['GigMeSignup'],
+        allowShowPassword: true,
+        autofocus: true,
+        
+        allowSignUp: false
+    }
+    var lock = new Auth0Lock(
+        '004I2FioPFIxgC0HJocX1VruscVQ5pYq',
+        'gig-me.auth0.com', options
+      )
+
+    
+
+    // var Auth = (function() {
+
+    // var wm = new WeakMap();
+    // var privateStore = {};
+    // var lock;
+    
+    // function Auth() {
+    //     this.lock = new Auth0Lock(
+    //     '004I2FioPFIxgC0HJocX1VruscVQ5pYq',
+    //     'gig-me.auth0.com', options
+    //     );
+    //     wm.set(privateStore, {
+    //     appName: "Gig-Me"
+    //     });
+    // }
+    
+    // Auth.prototype.getProfile = function() {
+    //     return wm.get(privateStore).profile;
+    // };
+    
+    // Auth.prototype.authn = function() {
+    //     // Listening for the authenticated event
+    //     this.lock.on("authenticated", function(authResult) {
+    //         console.log('here')
+    //     // Use the token in authResult to getUserInfo() and save it if necessary
+    //     this.getUserInfo(authResult.accessToken, function(error, profile) {
+    //         if (error) {
+    //         // Handle error
+    //         return;
+    //         }
+    
+    //         //we recommend not storing Access Tokens unless absolutely necessary
+    //         wm.set(privateStore, {
+    //         accessToken: authResult.accessToken
+    //         });
+    
+    //         wm.set(privateStore, {
+    //         profile: profile
+    //         });
+    
+    //     });
+    //     });
+    // };
+    // return Auth;
+    // }());
+
+    const Button = withRouter(({history}) => (
+        <button
+            className="button" 
+            onClick={() => {history.push('/signup')}}>
+            Sign Up
+        </button>
+    ))
 
     return (isAuthenticated
         ?   <Redirect to="/artisthome"/>
         :   <div className="log-in">
                 <div className="headers">
                     <h4>Welcome To</h4>
-                    <h1>Gig-Me</h1>
+                    <img className="login-logo" src="https://i.imgur.com/mQWWPgC.png" alt="logo" />
                 </div>
+                <div className="choices">
                     <button 
                     className="button"
-                        onClick={() => loginWithRedirect({})}
+                        onClick={() => lock.show()}
                     >
-                        Get Started
+                        Log In
                     </button>
+                    Or
+                    <Button />
+                </div>
             </div>
     )
 }
