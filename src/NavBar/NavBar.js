@@ -1,6 +1,7 @@
 import React from 'react'
 import { useAuth0 } from '../react-auth0-wrapper'
 import {Link, Redirect} from 'react-router-dom'
+import {withRouter} from 'react-router'
 import '../style_sheets/NavBar.css'
 
 const NavBar = () => {
@@ -16,7 +17,7 @@ const NavBar = () => {
                 {isAuthenticated && (
                     <span>
                     <Link to ="/artisthome">Home</Link>
-                    <Link to="/artistprofile">Profile</Link>
+                    <Link to="/publicprofile">Profile</Link>
                     <Link to="/venues">Venues</Link>
                     <Link to="/browse-artists">Artists</Link>
                     <Link to="/browse-agents">Booking</Link>
@@ -36,4 +37,4 @@ const NavBar = () => {
     )
 }
 
-export default NavBar
+export default withRouter(NavBar)

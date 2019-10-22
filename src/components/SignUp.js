@@ -30,7 +30,7 @@ class SignUp extends Component {
             method: "POST",
             headers: {"Content-Type":"application/json"},
             body: JSON.stringify({
-                "username": this.state.username,
+                "username": this.state.username.toLowerCase(),
                 "email": this.state.email,
                 "artist_name": this.state.artistName
             })
@@ -47,7 +47,7 @@ class SignUp extends Component {
             body: JSON.stringify({
                 clientId: "004I2FioPFIxgC0HJocX1VruscVQ5pYq",
                 connection: "GigMeSignup",
-                username: this.state.username,
+                username: this.state.username.toLowerCase(),
                 password: this.state.password,
                 email: this.state.email,
                 user_metadata: {

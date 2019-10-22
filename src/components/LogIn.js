@@ -14,7 +14,7 @@ const LogIn = () => {
             primaryColor: '#2975a6'
         },
         auth: {
-            redirectUrl: 'http://localhost:3000/artisthome',
+            redirectUrl: 'http://localhost:3000/home',
             responseType: 'token',
         },
         scope: "openid user_metadata",
@@ -27,55 +27,7 @@ const LogIn = () => {
     var lock = new Auth0Lock(
         '004I2FioPFIxgC0HJocX1VruscVQ5pYq',
         'gig-me.auth0.com', options
-      )
-
-    
-
-    // var Auth = (function() {
-
-    // var wm = new WeakMap();
-    // var privateStore = {};
-    // var lock;
-    
-    // function Auth() {
-    //     this.lock = new Auth0Lock(
-    //     '004I2FioPFIxgC0HJocX1VruscVQ5pYq',
-    //     'gig-me.auth0.com', options
-    //     );
-    //     wm.set(privateStore, {
-    //     appName: "Gig-Me"
-    //     });
-    // }
-    
-    // Auth.prototype.getProfile = function() {
-    //     return wm.get(privateStore).profile;
-    // };
-    
-    // Auth.prototype.authn = function() {
-    //     // Listening for the authenticated event
-    //     this.lock.on("authenticated", function(authResult) {
-    //         console.log('here')
-    //     // Use the token in authResult to getUserInfo() and save it if necessary
-    //     this.getUserInfo(authResult.accessToken, function(error, profile) {
-    //         if (error) {
-    //         // Handle error
-    //         return;
-    //         }
-    
-    //         //we recommend not storing Access Tokens unless absolutely necessary
-    //         wm.set(privateStore, {
-    //         accessToken: authResult.accessToken
-    //         });
-    
-    //         wm.set(privateStore, {
-    //         profile: profile
-    //         });
-    
-    //     });
-    //     });
-    // };
-    // return Auth;
-    // }());
+    )
 
     const Button = withRouter(({history}) => (
         <button
@@ -86,7 +38,7 @@ const LogIn = () => {
     ))
 
     return (isAuthenticated
-        ?   <Redirect to="/artisthome"/>
+        ?   <Redirect to="/home"/>
         :   <div className="log-in">
                 <div className="headers">
                     <h4>Welcome To</h4>
