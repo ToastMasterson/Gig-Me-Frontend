@@ -1,0 +1,41 @@
+.event-main {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.event-header {
+    width: 60%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.event-left-info {
+    width: 20%;
+    display: flex;
+    background-color: #0a0a0a;
+    flex-flow: column;
+    /* justify-content: center; */
+    align-items: center;
+    color: #c5c5a3;
+}
+
+.event-right-info {
+    width: 20%;
+    display: flex;
+    background-color: #0a0a0a;
+    flex-flow: column;
+    /* justify-content: center; */
+    align-items: center;
+    color: #c5c5a3;
+}
+
+.event-details {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.flyer {
+    width: 100%;
+}

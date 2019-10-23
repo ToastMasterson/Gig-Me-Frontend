@@ -343,9 +343,6 @@ class ArtistProfile extends Component {
                                 Enter or Update your Group's Information, 
                                 Click save to save changes per field.  Your Events will show on your Public Profile.
                                 <br/>
-                                <div className="public-button">
-                                    <button onClick={this.handlePublic}>Public Profile</button>
-                                </div>
                             </div>
                         </div>
                     </div>

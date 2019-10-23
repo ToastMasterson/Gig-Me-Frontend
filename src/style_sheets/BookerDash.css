@@ -1,0 +1,19 @@
+.request-card {
+    width: 200px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    border-style: solid;
+    border-radius: 20px;
+    background-color: rgb(205, 224, 241);
+    margin: 10px;
+}
+
+.request-card-image {
+    width: 100%;
+    height: 200px;
+    background-size: cover;
+    border-radius: 15px;
+    border-bottom-style: solid;
+}

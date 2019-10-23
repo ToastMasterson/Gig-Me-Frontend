@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react'
 import '../style_sheets/PublicProfile.css'
+import { withRouter, Redirect} from 'react-router-dom'
 
 const ArtistProfile = ({artist, profile, user}) => {
 
@@ -31,6 +32,20 @@ const ArtistProfile = ({artist, profile, user}) => {
             }
         </div>
     )
+
+    function checkUser() {
+        return user
+        ?   user.nickname === artist.username
+            ? <EditButton></EditButton>
+            : null
+        :null
+    }
+
+    const EditButton = withRouter(({history}) => (
+        <button className="edit-button" onClick={() => {history.push('/artistprofile')}}>
+            Edit Profile
+        </button>
+    ))
 
     return(
         <Fragment>
@@ -64,10 +79,7 @@ const ArtistProfile = ({artist, profile, user}) => {
                     </div>
                 </div>
                 <div className="info">
-                    {user.nickname === artist.username
-                    ? <button className="edit-button">Edit Profile</button>
-                    : null
-                    }
+                    {checkUser()}
                     <h3>Members:</h3>
                     <p>{profile.members}</p>
                     <h3>Gear:</h3>

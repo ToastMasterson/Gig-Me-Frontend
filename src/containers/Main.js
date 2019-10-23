@@ -7,6 +7,7 @@ import ArtistHome from './ArtistHome'
 import PublicProfile from '../components/PublicProfile'
 import PrivateRoute from '../components/PrivateRoute'
 import BrowseArtists from './BrowseArtists'
+import Event from '../components/Event'
 
 export default class Main extends Component {
 
@@ -15,12 +16,17 @@ export default class Main extends Component {
         loaded: false,
         visitProfile: false,
         profileToVisit: {},
-        browse: this.props.browse
+        browse: this.props.browse,
+        events: [],
+        visitEvent: false,
+        eventToVisit: {}
     }
 
     async componentDidMount(){
         await fetch(`http://localhost:3001/api/artists/${this.props.user.nickname}`)
-        .then(res => res.json()).then(artist => this.setState({artist: artist, loaded: true}))
+        .then(res => res.json()).then(artist => this.setState({artist: artist}))
+        await fetch('http://localhost:3001/api/events')
+        .then(res => res.json()).then(events => this.setState({events: events, loaded: true}))
     }
 
     componentWillReceiveProps() {
@@ -30,6 +36,12 @@ export default class Main extends Component {
     visitProfile = (artist) => {
         console.log(artist)
         this.setState({visitProfile: true, profileToVisit: artist, browse: false})
+    }
+
+    visitEvent = (id) => {
+        console.log(id)
+        const event = this.state.events.filter(event => event.id === id)
+        this.setState({visitEvent: true, eventToVisit: event})
     }
 
     render(){
@@ -42,9 +54,8 @@ export default class Main extends Component {
                     ? <ArtistProfile artist={this.state.artist} />
                     : null
                     }
-                    {/* <PrivateRoute path="/external-api" component={ExternalApi} /> */}
                     {this.props.artistHome
-                    ? <ArtistHome artist={this.state.artist} />
+                    ? <ArtistHome visitEvent={this.visitEvent} artist={this.state.artist} events={this.state.events.filter(event => event.artist_id === this.state.artist.id)} />
                     : null
                     }
                     {this.props.publicProfile
@@ -57,6 +68,10 @@ export default class Main extends Component {
                     }
                     {this.state.visitProfile
                     ? <PublicProfile artist={this.state.profileToVisit} profile={this.state.profileToVisit.artist_profile} />
+                    : null
+                    }
+                    {this.state.visitEvent
+                    ? <Event event={this.state.eventToVisit} />
                     : null
                     }
                 </div>

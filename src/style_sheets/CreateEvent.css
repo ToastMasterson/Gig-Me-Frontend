@@ -1,0 +1,13 @@
+.create-event-form {
+    display: flex;
+    flex-flow: column wrap;
+    width: 50%;
+    margin: auto;
+    background-color: #ccdadad1;
+    border-style: solid;
+    border-radius: 60px;
+    padding: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
