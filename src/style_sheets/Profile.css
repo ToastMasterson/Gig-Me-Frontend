@@ -22,6 +22,10 @@
 
 .band-name {
     font-family: 'Josefin Sans', sans-serif;
+    background-color: #c9dceca6;
+    border-radius: 10px;
+    border-style: outset;
+    border-width: 2px;
 }
 
 .modal {

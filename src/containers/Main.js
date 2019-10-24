@@ -13,10 +13,12 @@ export default class Main extends Component {
 
     state = {
         artist: {},
+        requests: [],
         loaded: false,
         visitProfile: false,
         profileToVisit: {},
         browse: this.props.browse,
+        artistHome: this.props.artistHome,
         events: [],
         visitEvent: false,
         eventToVisit: {}
@@ -30,7 +32,7 @@ export default class Main extends Component {
     }
 
     componentWillReceiveProps() {
-        this.setState({browse: this.props.browse, visitProfile: false})
+        this.setState({browse: this.props.browse, visitProfile: false, visitEvent: false, artistHome: true})
     }
 
     visitProfile = (artist) => {
@@ -41,7 +43,7 @@ export default class Main extends Component {
     visitEvent = (id) => {
         console.log(id)
         const event = this.state.events.filter(event => event.id === id)
-        this.setState({visitEvent: true, eventToVisit: event})
+        this.setState({artistHome: false, visitEvent: true, eventToVisit: event})
     }
 
     render(){
@@ -54,8 +56,8 @@ export default class Main extends Component {
                     ? <ArtistProfile artist={this.state.artist} />
                     : null
                     }
-                    {this.props.artistHome
-                    ? <ArtistHome visitEvent={this.visitEvent} artist={this.state.artist} events={this.state.events.filter(event => event.artist_id === this.state.artist.id)} />
+                    {this.state.artistHome
+                    ? <ArtistHome visitEvent={this.visitEvent} artist={this.state.artist} requests={this.state.requests} events={this.state.events.filter(event => event.artist_id === this.state.artist.id)} />
                     : null
                     }
                     {this.props.publicProfile
@@ -71,7 +73,7 @@ export default class Main extends Component {
                     : null
                     }
                     {this.state.visitEvent
-                    ? <Event event={this.state.eventToVisit} />
+                    ? <Event artist={this.state.artist} event={this.state.eventToVisit[0]} />
                     : null
                     }
                 </div>

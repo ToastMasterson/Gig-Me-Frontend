@@ -1,10 +1,10 @@
 import React from 'react'
 import '../style_sheets/Event.css'
 
-const Event = ({event}) => {
+const Event = ({event, artist}) => {
 
     const renderArtists = () => {
-        console.log(event.artists)
+        console.log(event.artists, artist)
         return event.artists.map(artist => (
             <div key={artist.artist_name}>
                 {artist.artist_name}
@@ -14,6 +14,32 @@ const Event = ({event}) => {
 
     const renderComments = () => {
         console.log()
+    }
+
+    const handleRequest = () => {
+        console.log(artist[0].id)
+        fetch(`http://localhost:3001/api/events/${event.id}/request`, {
+            method: "POST",
+            headers: {"Content-Type":"application/json"},
+            body: JSON.stringify({
+                artist_id: artist[0].id,
+                booker_id: event.booker.id,
+                event_id: event.id,
+                message: `${artist[0].artist_name} wants to be added to ${event.title}`
+            })
+        }).then(res => res.json()).then(message => console.log(message))
+    }
+
+    const checkArtist = () => {
+        let isArtist = false
+        event.artists.forEach(a => {
+            if(a.id === artist[0].id){
+                return isArtist = true
+            }
+            else { return isArtist = false}
+        })
+        console.log(isArtist)
+        return isArtist
     }
 
     return(
@@ -29,11 +55,18 @@ const Event = ({event}) => {
                 <div className="event-bands">
                     <h3>Line Up:</h3>
                     {renderArtists()}
+                    {artist
+                        ? checkArtist()
+                            ? null
+                            : <button onClick={handleRequest}>Request to be put on this event</button>
+                        : null
+                    }
                 </div>
                 <h3>Description:</h3>
                     <div>
                         <span>{event.description}</span>
                     </div>
+                
             </div>
             <div className="event-header">
                 <h1>{event.title}</h1>

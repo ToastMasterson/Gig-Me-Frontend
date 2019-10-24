@@ -69,11 +69,12 @@ class BookerDash extends Component {
         this.setState({visitEvent: true, eventToVisit: this.state.events.filter(event => event.id === id), showYourEvents: false, showAllEvents: false})
     }
     handleAccept = async (pending) => {
-        await fetch(`http://localhost:3001/api/events/:id/addArtist`, {
+        console.log(pending)
+        await fetch(`http://localhost:3001/api/events/${pending.event[0].id}/addArtist`, {
             method: "POST",
             headers: {"Content-Type":"application/json"},
             body: JSON.stringify({
-                artist_id: parseInt(pending.artist.id)
+                artist_id: pending.artist_id
             })
         }).then(res => res.json())
         .then(added => console.log(added))
@@ -108,9 +109,10 @@ class BookerDash extends Component {
     }
 
     renderRequests = () => {
+        console.log(this.state.requests)
         return this.state.requests.map(request => (
             <div className="request-card">
-                <div className="request-card-image" style={{backgroundImage: `url(${request.event.flyer})`}}></div>
+                <div className="request-card-image" style={{backgroundImage: `url(${request.event[0].flyer})`}}></div>
                 <h3>{request.artist.artist_name}</h3>
                 <p>{request.message}</p>
                 <button onClick={() => this.handleAccept(request)} className="accept-button">Accept</button>

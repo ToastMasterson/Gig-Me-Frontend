@@ -3,10 +3,10 @@ import React, {Component} from 'react'
 class Social extends Component {
 
     state = {
-        facebook: "",
-        instagram: "",
-        bandcamp: "",
-        soundcloud: ""
+        facebook: this.props.facebook,
+        instagram: this.props.instagram,
+        bandcamp: this.props.bandcamp,
+        soundcloud: this.props.soundcloud
     }
 
     handleChange = (event) => {

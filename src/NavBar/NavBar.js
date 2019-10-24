@@ -38,7 +38,7 @@ const NavBar = (props) => {
                     {isAuthenticated && (<img className="nav-logo" src="https://i.imgur.com/mQWWPgC.png" alt="GigMe" />)}
                     {isAuthenticated && (
                         <span>
-                            <Link to ="/artisthome">Home</Link>
+                            <Link to ="/home">Home</Link>
                             <Link to="/publicprofile">Profile</Link>
                             <Link to="/venues">Venues</Link>
                             <Link to="/browse-artists">Artists</Link>

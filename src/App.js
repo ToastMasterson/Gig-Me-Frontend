@@ -54,9 +54,9 @@ function App() {
             <Switch>
               <Route path="/" exact component={LogIn}/>
               <Route path="/signup" component={SignUp}/>
-              <PrivateRoute path="/home" component={() => <Main user={user} />} />
+              {/* <PrivateRoute path="/home" component={() => <Main user={user} />} /> */}
               <PrivateRoute path="/artistprofile" component={() => <Main user={user} artistProfile={true} /> } />
-              <PrivateRoute path="/artisthome" component={() => <Main user={user} artistHome={true} /> } />
+              <PrivateRoute path="/home" component={() => <Main user={user} artistHome={true} /> } />
               <PrivateRoute path="/publicprofile" component={() => <Main user={user} publicProfile={true} /> } />
               <PrivateRoute path="/browse-artists" component={() => <Main user={user} browse={true} /> } />
             </Switch></>

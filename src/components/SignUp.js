@@ -50,6 +50,8 @@ class SignUp extends Component {
                 username: this.state.username.toLowerCase(),
                 password: this.state.password,
                 email: this.state.email,
+                members: "",
+                gear: "",
                 user_metadata: {
                     artist_id: artistId.toString()
                 }
