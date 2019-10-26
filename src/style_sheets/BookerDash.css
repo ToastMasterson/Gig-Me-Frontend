@@ -17,3 +17,16 @@
     border-radius: 15px;
     border-bottom-style: solid;
 }
+
+.info-select:hover {
+    color: green;
+    cursor: pointer;
+}
+
+.create-button {
+    margin-bottom: 10px;
+}
+
+p {
+    text-align: center;
+}

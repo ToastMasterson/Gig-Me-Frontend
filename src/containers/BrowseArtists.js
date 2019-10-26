@@ -34,7 +34,7 @@ export default class BrowseArtists extends Component {
 
     filterByGenre = (genre) => {
         this.setState({
-            filteredArtists: this.state.artists.filter(artist => { return artist.artist_profile.genres !== null ? artist.artist_profile.genres.includes(genre) : null})
+            filteredArtists: this.state.artists.filter(artist => artist.artist_profile.genres.toLowerCase().includes(genre))
         }, () => {
             return this.state.genre === ""
             ? this.setState({filteredArtists: this.state.artists})
@@ -45,7 +45,7 @@ export default class BrowseArtists extends Component {
 
     handleChange = (event) => {
         this.setState({
-            genre: event.target.value
+            genre: event.target.value.toLowerCase()
         })
         this.filterByGenre(this.state.genre)
     }

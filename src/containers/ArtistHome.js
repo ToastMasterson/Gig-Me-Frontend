@@ -78,17 +78,6 @@ class ArtistHome extends Component {
             </div>
         ))
     }
-    
-
-    // renderEvents = () => {
-    //     return this.state.events.map(event => (
-    //         <div onClick={() => this.handleClick(event.id)} className="event-card" key={event.title}>
-    //             <div className="event-card-image" style={{backgroundImage: `url(${event.flyer})`}}></div>
-    //             <h3 className="event-card-title">{event.title}</h3>
-    //             <p className="event-card-date">{event.date}</p>
-    //         </div>
-    //     ))
-    // }
 
     render(){
         return(
@@ -98,10 +87,10 @@ class ArtistHome extends Component {
                 ? <div className="dashboard">
                     <div className="dashboard-nav">
                         <img className="nav-avatar" src={this.state.artist[0].artist_profile.avatar} alt="avatar"/>
-                        <h3>{this.state.artist[0].artist_name}</h3>
-                        <h3 onClick={this.handleYourEvents}>Your Events</h3>
-                        <h3 onClick={this.handleAllEvents}>All Events</h3>
-                        <h3 onClick={this.handleRequests}>Requests</h3>
+                        <h2>{this.state.artist[0].artist_name}</h2>
+                        <h3 className="info-select" onClick={this.handleYourEvents}>Your Events</h3>
+                        <h3 className="info-select" onClick={this.handleAllEvents}>All Events</h3>
+                        <h3 className="info-select" onClick={this.handleRequests}>Requests</h3>
                         {/* Filter by Venue? */}
                     </div>
                     <div className="display">

@@ -47,6 +47,17 @@ const ArtistProfile = ({artist, profile, user}) => {
         </button>
     ))
 
+    const renderEvents = () => {
+        console.log(artist)
+        return artist.events.map(event => (
+            <div className="event-card" key={event.title}>
+                <div className="event-card-image" style={{backgroundImage: `url(${event.flyer})`}}></div>
+                <h3 className="event-card-title">{event.title}</h3>
+                <p className="event-card-date">{event.date}</p>
+            </div>
+        ))
+    }
+
     return(
         <Fragment>
             <div className="profile">
@@ -70,11 +81,7 @@ const ArtistProfile = ({artist, profile, user}) => {
                     <div className="events">
                         <div>
                             <h2>Upcoming Events</h2>
-                        </div>
-                        <div>
-                            <div>
-                                <p>SomeEvent</p>
-                            </div>
+                            {renderEvents()}
                         </div>
                     </div>
                 </div>
@@ -83,7 +90,9 @@ const ArtistProfile = ({artist, profile, user}) => {
                     <h3>Members:</h3>
                     <p>{profile.members}</p>
                     <h3>Gear:</h3>
-                    <p>{profile.influences}</p>
+                    <p>{profile.gear}</p>
+                    <h3>Genres:</h3>
+                    <p>{profile.genres}</p>
                 </div>
             </div>
         </Fragment>

@@ -34,6 +34,10 @@ export default class CreateEvent extends Component {
         this.setState({[event.target.name]: event.target.value})
     }
 
+    handleVenueChange = (event) => {
+        this.setState({[event.target.name]: parseInt(event.target.value)})
+    }
+
     handleAges = () => {
         this.state.all_ages
             ? this.setState({all_ages: false})
@@ -61,7 +65,7 @@ export default class CreateEvent extends Component {
             body: JSON.stringify({
                 title: this.state.title,
                 description: this.state.description,
-                venue: parseInt(this.state.venue),
+                venue_id: this.state.venue,
                 time: this.state.time,
                 date: this.state.date,
                 flyer: this.state.uploadedFileCloudinaryUrl,
@@ -123,7 +127,7 @@ export default class CreateEvent extends Component {
                         </div>
                         <div className="form-input">
                             <label>Venue:</label>
-                                <select name="venue" onChange={this.handleChange}>
+                                <select name="venue" onChange={this.handleVenueChange}>
                                     {this.renderVenues()}
                                 </select>
                             
@@ -143,6 +147,7 @@ export default class CreateEvent extends Component {
                             <label>Date:</label>
                             <DatePicker
                                 onChange={this.onDateChange}
+                                showLeadingZeros={false}
                                 minDate={new Date()}
                                 value={this.state.date}
                             />

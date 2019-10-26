@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import { useAuth0 } from '../react-auth0-wrapper'
 import { Redirect } from 'react-router-dom'
+import '../style_sheets/SignUp.css'
 require('dotenv').config()
 
 class SignUp extends Component {
@@ -57,13 +58,13 @@ class SignUp extends Component {
                 }
             })
         }).then(res => res.json())
-        .then(<Redirect to="/" />).catch(err => console.log(err))
+        .then(window.location.href = "http://localhost:3000/").catch(err => console.log(err))
     }
 
 
     render(){
         return (
-            <div>
+            <div className="signup-div">
                 <form onSubmit={(event) => this.handleSubmit(event)} id="signup">
                     <fieldset>
                         <legend>Sign up</legend>

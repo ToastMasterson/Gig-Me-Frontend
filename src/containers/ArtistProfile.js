@@ -21,6 +21,7 @@ class ArtistProfile extends Component {
         newGear: "",
         newMembers: "",
         newInfluences: "",
+        newGenres: "",
         avatar: false,
         banner: false,
         social: false,
@@ -28,7 +29,8 @@ class ArtistProfile extends Component {
         contact: false,
         members: false,
         gear: false,
-        influences: false
+        influences: false,
+        genres: false
     }
 
     componentDidMount(){
@@ -97,6 +99,12 @@ class ArtistProfile extends Component {
         this.state.banner
         ? this.setState({banner: false})
         : this.setState({banner: true})
+    }
+
+    handleGenres = () => {
+        this.state.genres
+        ? this.setState({genres: false})
+        : this.setState({genres: true})
     }
 
     onAvatarDrop = (picture) => {
@@ -171,6 +179,12 @@ class ArtistProfile extends Component {
         .then(res => res.json())
         .then(profile => this.setState({profile: profile, influences: false}))
     }
+    saveGenres = (event) => {
+        event.preventDefault()
+        this.patchFetch("genres", this.state.newGenres)
+        .then(res => res.json())
+        .then(profile => this.setState({profile: profile, genres: false}))
+    }
 
     persistAvatar = (url) => {
         this.patchFetch("avatar", url)
@@ -215,6 +229,13 @@ class ArtistProfile extends Component {
     renderInfluencesForm = () => (
         <form onSubmit={(event) => this.saveInfluences(event)}>
             <input onChange={this.handleChange} type="text" name="newInfluences" defaultValue={this.state.profile.influences}/>
+            <input type="submit" value="Save" />
+        </form>
+    )
+
+    renderGenresForm = () => (
+        <form onSubmit={(event) => this.saveGenres(event)}>
+            <input onChange={this.handleChange} type="text" name="newGenres" defaultValue={this.state.profile.genres}/>
             <input type="submit" value="Save" />
         </form>
     )
@@ -356,6 +377,11 @@ class ArtistProfile extends Component {
                             {this.state.gear
                                 ? this.renderGearForm()
                                 : <p>{this.state.profile.gear}</p>
+                            }
+                        <h3 onClick={this.handleGenres} className="info-head">Genres:</h3>
+                            {this.state.genres
+                                ? this.renderGenresForm()
+                                : <p>{this.state.profile.genres}</p>
                             }
                     </div>
                 </div>

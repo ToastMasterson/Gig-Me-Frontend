@@ -88,12 +88,18 @@ class BookerDash extends Component {
         .then(this.setState({requests: this.state.requests.filter(request => request.id !== pending.id)}))
     }
 
+    splitDate = (date) => {
+        let splitDate = date.split('T')
+        return splitDate[0]
+    }
+
     renderYourEvents = () => {
         return this.state.yourEvents.map(event => (
             <div onClick={() => this.handleEventClick(event.id)} className="event-card" key={event.title}>
                 <div className="event-card-image" style={{backgroundImage: `url(${event.flyer})`}}></div>
-                <h3 className="event-card-title">{event.title}</h3>
-                <p className="event-card-date">{event.date}</p>
+                <h4 className="event-card-title">{event.title}</h4>
+                <p className="event-card-date">{event.venue.name}</p>
+                <p className="event-card-date">{this.splitDate(event.date)}</p>
             </div>
         ))
     }
@@ -102,8 +108,8 @@ class BookerDash extends Component {
         return this.state.events.map(event => (
             <div onClick={() => this.handleEventClick(event.id)} className="event-card" key={event.title}>
                 <div className="event-card-image" style={{backgroundImage: `url(${event.flyer})`}}></div>
-                <h3 className="event-card-title">{event.title}</h3>
-                <p className="event-card-date">{event.date}</p>
+                <h4 className="event-card-title">{event.title}</h4>
+                <p className="event-card-date">{this.splitDate(event.date)}</p>
             </div>
         ))
     }
@@ -134,11 +140,11 @@ class BookerDash extends Component {
                 ? <div className="dashboard">
                     <div className="dashboard-nav">
                         <img className="nav-avatar" src={this.state.booker[0].avatar} alt="avatar"/>
-                        <h3>{this.state.booker[0].artist_name}</h3>
-                        <h3 onClick={this.handleYourEvents}>Your Events</h3>
-                        <h3 onClick={this.handleAllEvents}>All Events</h3>
-                        <h3 onClick={this.handleRequests}>Requests</h3>
-                        <button onClick={this.handleCreateEvent}>Create Event</button>
+                        <h2>{this.state.booker[0].first_name} {this.state.booker[0].last_name}</h2>
+                        <h3 className="info-select" onClick={this.handleYourEvents}>Your Events</h3>
+                        <h3 className="info-select" onClick={this.handleAllEvents}>All Events</h3>
+                        <h3 className="info-select" onClick={this.handleRequests}>Requests</h3>
+                        <button className="create-button" onClick={this.handleCreateEvent}>Create Event</button>
                     </div>
                     <div className="display">
                         {this.state.browse
@@ -165,7 +171,7 @@ class BookerDash extends Component {
                                         {this.state.showAllEvents
                                             ? <div className="events-container">
                                                 <div className="events-header">
-                                                    <h1 className="header-text">Your Events</h1>
+                                                    <h1 className="header-text">All Events</h1>
                                                 </div>
                                                 <div className="card-container">
                                                     {this.renderEvents()}

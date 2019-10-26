@@ -1,0 +1,11 @@
+.signup-div{ 
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    background-color: #aec2d4cf;
+    width: 20%;
+    margin: auto;
+    border-style: solid;
+    padding: 20px;
+    margin-top: 70px;
+}

@@ -12,6 +12,11 @@ const Event = ({event, artist}) => {
         ))
     }
 
+    const splitDate = () => {
+        let splitDate = event.date.split('T')
+        return splitDate[0]
+    }
+
     const renderComments = () => {
         console.log()
     }
@@ -72,7 +77,7 @@ const Event = ({event, artist}) => {
                 <h1>{event.title}</h1>
                 <div>
                     <h2>Comments:</h2>
-                    {event.soundcheck}
+                    SoundCheck: {event.soundcheck}
                     {renderComments()}
                 </div>
             </div>
@@ -85,7 +90,7 @@ const Event = ({event, artist}) => {
                     
                     <h3>Date:</h3>
                     
-                        <span>{event.date}</span>
+                        <span>{splitDate()}</span>
                     
                     <h3>Time:</h3>
                     
