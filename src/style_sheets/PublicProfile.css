@@ -1,0 +1,95 @@
+.header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    /* justify-content: flex-end; */
+}
+
+.public-banner {
+    display: flex;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 150px;
+    justify-content: center;
+    align-items: center;
+}
+
+.band-name {
+    font-family: 'Josefin Sans', sans-serif;
+    background-color: #c9dceca6;
+    border-radius: 10px;
+    border-style: outset;
+    border-width: 2px;
+}
+
+.public-avatar {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.profile {
+    display: flex;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.info {
+    display: flex;
+    width: 20%;
+    background-color: #0a0a0a;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    color: #c5c5a3;
+}
+
+.icon {
+    width: 30px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+}
+
+.middle {
+    width: 80%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.member-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.influences {
+    width: 80%;
+}
+
+.events { 
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.instructions-header {
+    margin-top: 10px;
+}
+
+.instructions {
+    width: 60%;
+    background-color: #bed3e67a;
+    border-radius: 20px;
+    border-style: solid;
+    padding: 20px;
+}
+
+.public-button {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.edit-button {
+    margin-bottom: 50px;
+}
