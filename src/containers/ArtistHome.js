@@ -28,10 +28,6 @@ class ArtistHome extends Component {
             loading: true})
     }
 
-    handleClick = (id) => {
-        console.log(this.state.artist[0].artist_profile.avatar)
-    }
-
     handleEventClick = (id) => {
         this.props.visitEvent(id)
     }
@@ -39,9 +35,11 @@ class ArtistHome extends Component {
     handleYourEvents = () => {
         this.setState({showYourEvents: true, showAllEvents: false, showRequests: false})
     }
+
     handleAllEvents = () => {
         this.setState({showYourEvents: false, showAllEvents: true, showRequests: false})
     }
+
     handleRequests = () => {
         this.setState({showYourEvents: false, showAllEvents: false, showRequests: true})
     }
@@ -67,9 +65,6 @@ class ArtistHome extends Component {
     }
 
     renderRequests = () => {
-        this.state.requests.map(request => {
-            console.log(request.event)
-        })
         return this.state.requests.map(request => (
             <div className="request-card">
                 <div className="request-card-image" style={{backgroundImage: `url(${request.event[0].flyer})`}}></div>
@@ -82,19 +77,18 @@ class ArtistHome extends Component {
     render(){
         return(
             <Fragment>
-                
                {this.state.loading
-                ? <div className="dashboard">
-                    <div className="dashboard-nav">
-                        <img className="nav-avatar" src={this.state.artist[0].artist_profile.avatar} alt="avatar"/>
-                        <h2>{this.state.artist[0].artist_name}</h2>
-                        <h3 className="info-select" onClick={this.handleYourEvents}>Your Events</h3>
-                        <h3 className="info-select" onClick={this.handleAllEvents}>All Events</h3>
-                        <h3 className="info-select" onClick={this.handleRequests}>Requests</h3>
-                        {/* Filter by Venue? */}
-                    </div>
-                    <div className="display">
-                        {this.state.showYourEvents
+                    ? <div className="dashboard">
+                        <div className="dashboard-nav">
+                            <img className="nav-avatar" src={this.state.artist[0].artist_profile.avatar} alt="avatar"/>
+                            <h2>{this.state.artist[0].artist_name}</h2>
+                            <h3 className="info-select" onClick={this.handleYourEvents}>Your Events</h3>
+                            <h3 className="info-select" onClick={this.handleAllEvents}>All Events</h3>
+                            <h3 className="info-select" onClick={this.handleRequests}>Requests</h3>
+                        </div>
+
+                        <div className="display">
+                            {this.state.showYourEvents
                                 ? <div className="events-container">
                                     <div className="events-header">
                                         <h1 className="header-text">Your Events</h1>
@@ -127,10 +121,10 @@ class ArtistHome extends Component {
                                 </div>
                                 : null
                             }
-                    </div>
-                </div> 
-                : <div>Loading...</div>
-                } 
+                        </div>
+                    </div> 
+                    : <div>Loading...</div>
+                }
             </Fragment>
         )
     }

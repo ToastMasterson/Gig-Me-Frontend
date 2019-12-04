@@ -1,32 +1,32 @@
 import React, { Fragment } from 'react'
 import '../style_sheets/PublicProfile.css'
-import { withRouter, Redirect} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 const ArtistProfile = ({artist, profile, user}) => {
 
     const renderSocial = () => (
         <div className="social">
             {profile.facebook !== ""
-                ? <a href={profile.facebook} target="_blank">
-                    <img className="icon" src="http://icons.iconarchive.com/icons/danleech/simple/256/facebook-icon.png" />
+                ? <a href={profile.facebook} target="_blank" rel="noopener noreferrer" >
+                    <img className="icon" src="http://icons.iconarchive.com/icons/danleech/simple/256/facebook-icon.png" alt="icon" />
                 </a>
                 : null
             }
             {profile.instagram !== ""
-                ? <a href={profile.instagram} target="_blank">
-                    <img className="icon" src="http://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c521.png" />
+                ? <a href={profile.instagram} target="_blank" rel="noopener noreferrer" >
+                    <img className="icon" src="http://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c521.png" alt="icon" />
                 </a>
                 : null
             }
             {profile.bandcamp !== ""
-                ? <a href={profile.bandcamp} target="_blank">
-                    <img className="icon" src="https://i.pinimg.com/originals/78/c6/d8/78c6d839394ec3e17cbe8696fc8dcfd8.png" />
+                ? <a href={profile.bandcamp} target="_blank" rel="noopener noreferrer" >
+                    <img className="icon" src="https://i.pinimg.com/originals/78/c6/d8/78c6d839394ec3e17cbe8696fc8dcfd8.png" alt="icon" />
                 </a>
                 : null
             }
             {profile.soundcloud !== ""
-                ? <a href={profile.soundcloud} target="_blank">
-                    <img className="icon" src="https://i1.sndcdn.com/avatars-000681921569-32qkcn-t500x500.jpg" />
+                ? <a href={profile.soundcloud} target="_blank" rel="noopener noreferrer" >
+                    <img className="icon" src="https://i1.sndcdn.com/avatars-000681921569-32qkcn-t500x500.jpg" alt="icon" />
                 </a>
                 : null
             }
@@ -35,10 +35,10 @@ const ArtistProfile = ({artist, profile, user}) => {
 
     function checkUser() {
         return user
-        ?   user.nickname === artist.username
-            ? <EditButton></EditButton>
+            ? user.nickname === artist.username
+                ? <EditButton></EditButton>
+                : null
             : null
-        :null
     }
 
     const EditButton = withRouter(({history}) => (
@@ -48,7 +48,6 @@ const ArtistProfile = ({artist, profile, user}) => {
     ))
 
     const renderEvents = () => {
-        console.log(artist)
         return artist.events.map(event => (
             <div className="event-card" key={event.title}>
                 <div className="event-card-image" style={{backgroundImage: `url(${event.flyer})`}}></div>
@@ -79,8 +78,8 @@ const ArtistProfile = ({artist, profile, user}) => {
                         </div>
                     </div>
                     <div className="events">
-                        <div>
-                            <h2>Upcoming Events</h2>
+                        <h2>Upcoming Events</h2>
+                        <div className="upcoming-events">
                             {renderEvents()}
                         </div>
                     </div>

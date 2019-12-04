@@ -4,24 +4,24 @@ import DatePicker from 'react-date-picker'
 import CurrencyInput from 'react-currency-input'
 import ImageUploader from 'react-images-upload'
 import request from 'superagent'
-require('dotenv').config()
 
+require('dotenv').config()
 
 export default class CreateEvent extends Component {
 
     state = {
         title: "",
         description: "",
-        venue: 1,
         time: "",
-        date: new Date(),
         flyer: "",
+        amount: "",
+        uploadedFileCloudinaryUrl: "",
+        venue: 1,
         price: 0.00,
         spots: 0,
         all_ages: false,
+        date: new Date(),
         file: [],
-        uploadedFileCloudinaryUrl: "",
-        amount: "",
     }
 
     renderVenues = () => {
@@ -31,11 +31,11 @@ export default class CreateEvent extends Component {
     }
 
     handleChange = (event) => {
-        this.setState({[event.target.name]: event.target.value})
+        this.setState({ [event.target.name]: event.target.value })
     }
 
     handleVenueChange = (event) => {
-        this.setState({[event.target.name]: parseInt(event.target.value)})
+        this.setState({ [event.target.name]: parseInt(event.target.value) })
     }
 
     handleAges = () => {
@@ -46,7 +46,7 @@ export default class CreateEvent extends Component {
 
     onTimeChange = time => this.setState({ time })
     onDateChange = date => this.setState({ date })
-    onPriceChange =  (event, maskedvalue, floatvalue) => {
+    onPriceChange =  (maskedvalue) => {
         this.setState({price: maskedvalue});
     }
 
@@ -84,15 +84,13 @@ export default class CreateEvent extends Component {
                             .field('file', file);
     
         upload.end((err, response) => {
-          if (err) {
-            console.error(err);
-          }
-    
-          if (response.body.secure_url !== '') {
-            this.setState({
-              uploadedFileCloudinaryUrl: response.body.secure_url
-            });
-          }
+            if (err) {
+                console.error(err);
+            }
+        
+            if (response.body.secure_url !== '') {
+                this.setState({ uploadedFileCloudinaryUrl: response.body.secure_url });
+            }
         });
       }
 
@@ -108,7 +106,6 @@ export default class CreateEvent extends Component {
         />
     )
 
- 
     render() {
         return (
             <div className="create-event-container">
@@ -117,20 +114,17 @@ export default class CreateEvent extends Component {
                     <div>
                         <div className="form-input">
                             <label>Title:</label>
-                                <input onChange={this.handleChange} type="text" name="title" placeholder="Event Title" />
-                            
+                            <input onChange={this.handleChange} type="text" name="title" placeholder="Event Title" />
                         </div>
                         <div className="form-input">
                             <label>Description:</label>
-                                <input onChange={this.handleChange} type="text" name="description" placeholder="Description" />
-                            
+                            <input onChange={this.handleChange} type="text" name="description" placeholder="Description" />
                         </div>
                         <div className="form-input">
                             <label>Venue:</label>
-                                <select name="venue" onChange={this.handleVenueChange}>
-                                    {this.renderVenues()}
-                                </select>
-                            
+                            <select name="venue" onChange={this.handleVenueChange}>
+                                {this.renderVenues()}
+                            </select>
                         </div>
                         <div className="form-input">
                             <label>Time:</label>
@@ -141,7 +135,6 @@ export default class CreateEvent extends Component {
                                 amPmAriaLabel="Select AM/PM"
                                 value={this.state.time}
                             />
-                            
                         </div>
                         <div className="form-input">
                             <label>Date:</label>
@@ -151,27 +144,22 @@ export default class CreateEvent extends Component {
                                 minDate={new Date()}
                                 value={this.state.date}
                             />
-                            
                         </div>
                         <div className="form-input">
                             <label>Flyer:</label>
-                                {this.imageUpload()}
-                            
+                            {this.imageUpload()}
                         </div>
                         <div className="form-input">
                             <label>Price:</label>
-                                <CurrencyInput value={this.state.price} onChange={this.onPriceChange}/>
-                            
+                            <CurrencyInput value={this.state.price} onChange={this.onPriceChange}/>
                         </div>
                         <div className="form-input">
                             <label>Slots Open:</label>
-                                <input onChange={this.handleChange} type="number" name="spots" placeholder="0" />
-                            
+                            <input onChange={this.handleChange} type="number" name="spots" placeholder="0" />
                         </div>
                         <div className="form-input">
                             <label>All Ages?</label>
-                                <input onClick={this.handleAges} type="checkbox" name="all_ages" />
-                            
+                            <input onClick={this.handleAges} type="checkbox" name="all_ages" />
                         </div>
                         <div className="form-submit">
                             <input onSubmit={this.handleSubmit} className="form-submit-button" type="submit" value="Submit" />

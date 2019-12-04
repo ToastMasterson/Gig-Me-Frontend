@@ -1,3 +1,33 @@
+Welcome to Gig-Me!
+(A work in progress)
+
+Gig-Me is a prototype app built and designed for local musicians and bands to find events they can request to be booked for.
+As a musician, I've found that the local DIY scene for musicians can be quite unorganized and chaotic.
+Whether it's being booked for the "wrong type of show", not getting details on set-times, whether there is a backline or not, or just plain poor communication between a booking agent and the signed-on bands, Gig-Me is meant to serve as a solution for the common-person's professional outlet.
+
+Just because a musician or band doesn't have dreams of full stadiums, dazzling light shows, and backup dancers does not mean they should not function professionally or be provided with professional event coordination.
+
+This app was built with a Node.js backend that uses Express, Knex, and Objection for optimal requests and responses, and a React.js frontend for component-driven user experience that is quick and effective.
+
+If you wish to run this code, first be sure to clone down the Backend and Frontend Repositories.
+https://github.com/ToastMasterson/Gig-Me-Frontend
+https://github.com/ToastMasterson/Gig-Me-Backend
+
+Run "npm install"
+then run "npm start" first on the backend, then on the frontend.
+
+Upon launching the app you will be prompted with the option to log-in or sign-up
+Both actions will run through an Auth0 secure authentication process.
+
+Passwords are not visible to me or anyone else.
+
+The app is loaded with example events and bands.
+None of the information for Artists, Venues, or Booking Agents is valid or usable.
+
+
+Thank you and hope to see you when the larger platform is complete!
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

@@ -2,11 +2,12 @@ import React from 'react'
 import { useAuth0 } from '../react-auth0-wrapper'
 import { withRouter, Redirect } from 'react-router-dom'
 import Auth0Lock from 'auth0-lock'
-
 import '../style_sheets/LogIn.css'
 
+require('dotenv').config()
+
 const LogIn = () => {
-    const { isAuthenticated, user } = useAuth0()
+    const { isAuthenticated } = useAuth0()
 
     var options = {
         theme: {
@@ -14,7 +15,7 @@ const LogIn = () => {
             primaryColor: '#2975a6'
         },
         auth: {
-            redirectUrl: 'http://localhost:3000/home',
+            redirectUrl: 'http://localhost:3001/home',
             responseType: 'token',
         },
         scope: "openid user_metadata",
@@ -24,8 +25,9 @@ const LogIn = () => {
         
         allowSignUp: false
     }
+    
     var lock = new Auth0Lock(
-        '004I2FioPFIxgC0HJocX1VruscVQ5pYq',
+        process.env.clientId,
         'gig-me.auth0.com', options
     )
 
