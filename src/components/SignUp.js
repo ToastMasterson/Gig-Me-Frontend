@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
-import { useAuth0 } from '../react-auth0-wrapper'
-import { Redirect } from 'react-router-dom'
+
 import '../style_sheets/SignUp.css'
+
 require('dotenv').config()
 
 class SignUp extends Component {

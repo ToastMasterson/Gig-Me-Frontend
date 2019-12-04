@@ -47,64 +47,74 @@ class ArtistProfile extends Component {
 
     patchUrl = () => `http://localhost:3001/api/profiles/${this.state.profile.id}`
 
+    imageUpload = (type) => (
+        <ImageUploader 
+            singleImage={true}
+            withIcon={false}
+            withLabel={false}
+            buttonText='Upload Image'
+            onChange={type === "avatar" ? this.onAvatarDrop : this.onBannerDrop}
+            imgExtension={['.jpg', '.png']}
+            maxFileSize={5242880}
+        />
+    )
+
     handleSocial = () => {
         this.state.social
-        ? this.setState({social: false})
-        : this.setState({social: true})
+            ? this.setState({social: false})
+            : this.setState({social: true})
     }
 
     handleChange = (event) => {
-        this.setState({
-            [event.target.name]: event.target.value
-        })
+        this.setState({ [event.target.name]: event.target.value })
     }
 
     handleSummary = () => {
         this.state.summary
-        ? this.setState({summary: false})
-        : this.setState({summary: true})
+            ? this.setState({summary: false})
+            : this.setState({summary: true})
     }
 
     handleContact = () => {
         this.state.contact
-        ? this.setState({contact: false})
-        : this.setState({contact: true})
+            ? this.setState({contact: false})
+            : this.setState({contact: true})
     }
 
     handleMembers = () => {
         this.state.members
-        ? this.setState({members: false})
-        : this.setState({members: true})
+            ? this.setState({members: false})
+            : this.setState({members: true})
     }
 
     handleGear = () => {
         this.state.gear
-        ? this.setState({gear: false})
-        : this.setState({gear: true})
+            ? this.setState({gear: false})
+            : this.setState({gear: true})
     }
 
     handleInfluences = () => {
         this.state.influences
-        ? this.setState({influences: false})
-        : this.setState({influences: true})
+            ? this.setState({influences: false})
+            : this.setState({influences: true})
     }
 
     handleAvatar = () => {
         this.state.avatar
-        ? this.setState({avatar: false})
-        : this.setState({avatar: true})
+            ? this.setState({avatar: false})
+            : this.setState({avatar: true})
     }
 
     handleBanner = () => {
         this.state.banner
-        ? this.setState({banner: false})
-        : this.setState({banner: true})
+            ? this.setState({banner: false})
+            : this.setState({banner: true})
     }
 
     handleGenres = () => {
         this.state.genres
-        ? this.setState({genres: false})
-        : this.setState({genres: true})
+            ? this.setState({genres: false})
+            : this.setState({genres: true})
     }
 
     onAvatarDrop = (picture) => {
@@ -148,54 +158,54 @@ class ArtistProfile extends Component {
     saveSummary = (event) => {
         event.preventDefault()
         this.patchFetch("summary", this.state.newSummary)
-        .then(res => res.json())
-        .then(profile => this.setState({profile: profile, summary: false}))
+            .then(res => res.json())
+            .then(profile => this.setState({profile: profile, summary: false}))
     }
 
     saveContact = (event) => {
         event.preventDefault()
         this.patchFetch("email", this.state.newContact)
-        .then(res => res.json())
-        .then(profile => this.setState({profile: profile, contact: false}))
+            .then(res => res.json())
+            .then(profile => this.setState({profile: profile, contact: false}))
     }
 
     saveGear = (event) => {
         event.preventDefault()
         this.patchFetch("gear", this.state.newGear)
-        .then(res => res.json())
-        .then(profile => this.setState({profile: profile, gear: false}))
+            .then(res => res.json())
+            .then(profile => this.setState({profile: profile, gear: false}))
     }
 
     saveMembers = (event) => {
         event.preventDefault()
         this.patchFetch("members", this.state.newMembers)
-        .then(res => res.json())
-        .then(profile => this.setState({profile: profile, members: false}))
+            .then(res => res.json())
+            .then(profile => this.setState({profile: profile, members: false}))
     }
 
     saveInfluences = (event) => {
         event.preventDefault()
         this.patchFetch("influences", this.state.newInfluences)
-        .then(res => res.json())
-        .then(profile => this.setState({profile: profile, influences: false}))
+            .then(res => res.json())
+            .then(profile => this.setState({profile: profile, influences: false}))
     }
     saveGenres = (event) => {
         event.preventDefault()
         this.patchFetch("genres", this.state.newGenres)
-        .then(res => res.json())
-        .then(profile => this.setState({profile: profile, genres: false}))
+            .then(res => res.json())
+            .then(profile => this.setState({profile: profile, genres: false}))
     }
 
     persistAvatar = (url) => {
         this.patchFetch("avatar", url)
-        .then(res => res.json())
-        .then(profile => this.setState({profile: profile}))
+            .then(res => res.json())
+            .then(profile => this.setState({profile: profile}))
     }
 
     persistBanner = (url) => {
         this.patchFetch("banner", url)
-        .then(res => res.json())
-        .then(profile => this.setState({profile: profile}))
+            .then(res => res.json())
+            .then(profile => this.setState({profile: profile}))
     }
 
     renderSummaryForm = () => (
@@ -248,58 +258,45 @@ class ArtistProfile extends Component {
                             .field('file', file);
     
         upload.end((err, response) => {
-          if (err) {
-            console.error(err);
-          }
-    
-          if (response.body.secure_url !== '') {
-            this.setState({
-              uploadedFileCloudinaryUrl: response.body.secure_url
-            });
-            this.state.avatar
-            ? this.persistAvatar(response.body.secure_url)
-            : this.persistBanner(response.body.secure_url)
-            this.setState({avatar: false})
-            this.setState({banner: false})
-          }
+            if (err) {
+                console.error(err);
+            }
+        
+            if (response.body.secure_url !== '') {
+                this.setState({
+                uploadedFileCloudinaryUrl: response.body.secure_url
+                });
+                this.state.avatar
+                    ? this.persistAvatar(response.body.secure_url)
+                    : this.persistBanner(response.body.secure_url)
+                this.setState({avatar: false, banner: false})
+            }
         });
       }
-
-    imageUpload = (type) => (
-        <ImageUploader 
-            singleImage={true}
-            withIcon={false}
-            withLabel={false}
-            buttonText='Upload Image'
-            onChange={type === "avatar" ? this.onAvatarDrop : this.onBannerDrop}
-            imgExtension={['.jpg', '.png']}
-            maxFileSize={5242880}
-        />
-    )
 
     renderSocial = () => (
         <div className="social">
             {this.state.profile.facebook !== ""
-                ? <a href={this.state.profile.facebook} target="_blank">
-                    <img className="icon" src="http://icons.iconarchive.com/icons/danleech/simple/256/facebook-icon.png" />
+                ? <a href={this.state.profile.facebook} target="_blank" rel="noopener noreferrer">
+                    <img className="icon" src="http://icons.iconarchive.com/icons/danleech/simple/256/facebook-icon.png" alt="icon" />
                 </a>
                 : null
             }
             {this.state.profile.instagram !== ""
-                ? <a href={this.state.profile.instagram} target="_blank">
-                    <img className="icon" src="http://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c521.png" />
+                ? <a href={this.state.profile.instagram} target="_blank" rel="noopener noreferrer">
+                    <img className="icon" src="http://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c521.png" alt="icon" />
                 </a>
                 : null
             }
             {this.state.profile.bandcamp !== ""
-                ? <a href={this.state.profile.bandcamp} target="_blank">
-                    <img className="icon" src="https://i.pinimg.com/originals/78/c6/d8/78c6d839394ec3e17cbe8696fc8dcfd8.png" />
+                ? <a href={this.state.profile.bandcamp} target="_blank" rel="noopener noreferrer">
+                    <img className="icon" src="https://i.pinimg.com/originals/78/c6/d8/78c6d839394ec3e17cbe8696fc8dcfd8.png" alt="icon" />
                 </a>
                 : null
             }
             {this.state.profile.soundcloud !== ""
-                ? <a href={this.state.profile.soundcloud} target="_blank">
-                    <img className="icon" src="https://i1.sndcdn.com/avatars-000681921569-32qkcn-t500x500.jpg" />
+                ? <a href={this.state.profile.soundcloud} target="_blank" rel="noopener noreferrer">
+                    <img className="icon" src="https://i1.sndcdn.com/avatars-000681921569-32qkcn-t500x500.jpg" alt="icon" />
                 </a>
                 : null
             }
@@ -314,27 +311,27 @@ class ArtistProfile extends Component {
 
     render(){
         return(
-
             <Fragment>
-            <div className="profile">
-                {this.state.avatar
-                    ? <div className="modal">
-                        {this.imageUpload("avatar")}
-                    </div>
-                    : null}
-                {this.state.banner
-                    ? <div className="modal">
-                        {this.imageUpload("banner")}
-                    </div>
-                    : null}
+                <div className="profile">
+                    {this.state.avatar
+                        ? <div className="modal">
+                            {this.imageUpload("avatar")}
+                        </div>
+                        : null
+                    }
+                    {this.state.banner
+                        ? <div className="modal">
+                            {this.imageUpload("banner")}
+                        </div>
+                        : null
+                    }
                     <div className="info">
                         <img onClick={this.handleAvatar} className="avatar" src={this.state.profile.avatar} alt="profile" />
                         <h3 className="info-head" onClick={this.handleSocial}>Social Media:</h3>
                         {this.state.social
-                        ? <Social profile={this.state.profile} saveSocial={this.saveSocial} />
-                        : this.renderSocial()
+                            ? <Social profile={this.state.profile} saveSocial={this.saveSocial} />
+                            : this.renderSocial()
                         }
-                        
                         <h3 onClick={this.handleSummary} className="info-head">Summary:</h3>
                         {this.state.summary
                             ? this.renderSummaryForm()
@@ -353,7 +350,10 @@ class ArtistProfile extends Component {
                     </div>
                     <div className="middle">
                         <div className="header">
-                            <div onClick={this.handleBanner} className="banner" style={{backgroundImage: `url(${this.state.profile.banner})`}} >
+                            <div onClick={this.handleBanner} 
+                                className="banner" 
+                                style={{backgroundImage: `url(${this.state.profile.banner})`}}
+                            >
                                 <h1 className="band-name">{this.state.artist.artist_name}</h1>
                             </div>
                         </div>

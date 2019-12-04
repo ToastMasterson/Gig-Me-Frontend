@@ -1,43 +1,70 @@
-.card {
+@keyframes bounce {
+	0%, 20%, 60%, 100% {
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+	}
+
+	40% {
+		-webkit-transform: translateY(-10px);
+		transform: translateY(-10px);
+	}
+
+	80% {
+		-webkit-transform: translateY(-10px);
+		transform: translateY(-10px);
+	}
+}
+
+.venue-card {
     width: 250px;
     height: 250px;
     border-style: solid;
     border-color: black;
-    border-width: 2px;
+    border-width: 1px;
     border-radius: 15px;
     font-family: 'Josefin Sans', sans-serif;
     align-items: center;
     padding-bottom: 10px;
+    background-color: rgb(205, 224, 241);
+    text-align: center;
 }
 
-.card:hover {
+.venue-card:hover {
     color: green;
     border-color: green;
     cursor: pointer;
+    animation: bounce 0.5s;
 }
 
-.card-image {
+.venue-card-image {
     width: 100%;
     height: 80%;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     border-bottom-style: solid;
-    border-width: 2px;
+    border-width: 1px;
 }
 
-.card-name {
+.venue-card-name {
     font-size: 100%;
+    font-weight: bold;
+    margin: auto;
+    margin-top: 5px;
+}
+
+.venue-card-location {
+    font-size: 80%;
     margin: auto;
 }
 
-.browser {
+.venue-browser {
     display: flex;
     flex-flow: column;
     justify-content: center;
     align-items: center;
 }
 
-.spread {
+.venue-spread {
     width: 80%;
     display: flex;
     flex-flow: row wrap;

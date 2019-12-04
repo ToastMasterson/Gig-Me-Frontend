@@ -2,6 +2,7 @@ import React from 'react'
 import { useAuth0 } from '../react-auth0-wrapper'
 import {Link, Redirect} from 'react-router-dom'
 import {withRouter} from 'react-router'
+
 import '../style_sheets/NavBar.css'
 
 const NavBar = (props) => {
